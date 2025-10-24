@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>DUBliss — Africa's Premier Hub for Research Excellence, Innovation, and Impact</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  :root{
+    --navy:#0A2342; --navy-2:#112B4A;
+    --gold:#D4A017; --gold-2:#B8860B;
+    --white:#ffffff; --muted:#cbd5e0;
+    --glass: rgba(255,255,255,0.04);
+    --ease: cubic-bezier(.2,.9,.3,1);
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0;font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;color:var(--white);background:linear-gradient(180deg,var(--navy),var(--navy-2));-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  .container{width:92%;max-width:1200px;margin:0 auto;}
+
+/* ===== HEADER ===== */
+header{position:fixed;top:0;left:0;right:0;z-index:1200;padding:12px 0;transition: all .35s var(--ease);backdrop-filter: blur(6px)}
+.header-inner{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.logo-row{display:flex;gap:12px;align-items:center}
+.logo-row img{width:56px;height:56px;border-radius:10px;object-fit:cover;border:2px solid rgba(255,255,255,0.06);box-shadow:0 12px 30px rgba(0,0,0,0.45);transition:transform .32s}
+.logo-row img:hover{transform:scale(1.06) rotate(-4deg)}
+.logo-text{display:flex;flex-direction:column;line-height:1}
+.logo-main{font-weight:800;color:var(--gold);font-size:16px}
+.logo-sub{font-size:11px;color:var(--muted)}
+nav ul{display:flex;gap:20px;align-items:center;margin:0;padding:0;list-style:none}
+nav a{font-weight:600;color:rgba(255,255,255,0.92);padding:8px 6px;border-radius:6px;transition:color .25s, transform .25s}
+nav a:hover{color:var(--gold);transform:translateY(-2px)}
+.mobile-toggle{display:none;background:none;border:none;color:var(--white);font-size:22px;cursor:pointer}
+
+/* ===== HERO ===== */
+.hero{height:100vh;display:flex;align-items:center;justify-content:center;position:relative;padding-top:76px}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(circle at 20% 20%, rgba(212,160,23,0.06) 0%, transparent 12%), url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1650&q=80') center/cover no-repeat;filter:brightness(.45);z-index:0}
+.canvas-wrap{position:absolute;inset:0;z-index:1;pointer-events:none}
+.hero-inner{position:relative;z-index:2;text-align:center;max-width:1100px;padding:36px}
+.hero h1{font-size:clamp(1.6rem,3.6vw,3.4rem);line-height:1.02;margin-bottom:12px;color:var(--gold);font-weight:800;letter-spacing:-0.5px;opacity:0;transform:translateY(20px)}
+.hero p{color:var(--muted);font-size:1.03rem;max-width:920px;margin:0 auto 22px;opacity:0;transform:translateY(20px)}
+.hero .buttons{display:flex;gap:14px;justify-content:center;margin-top:6px;opacity:0;transform:translateY(18px)}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:12px 20px;border-radius:10px;font-weight:700;cursor:pointer;border:0;transition:transform .25s var(--ease), box-shadow .25s}
+.btn-primary{background:linear-gradient(90deg,var(--gold),var(--gold-2));color:var(--navy);box-shadow:0 12px 30px rgba(212,160,23,0.16)}
+.btn-ghost{background:transparent;border:2px solid rgba(255,255,255,0.08);color:var(--white)}
+
+/* floating small images row under hero */
+.hero-floating{display:flex;gap:18px;justify-content:center;margin-top:28px}
+
+/* ===== ABOUT ===== */
+.section{padding:84px 0;position:relative}
+.section .section-title{text-align:center;margin-bottom:36px}
+.section .section-title h2{font-size:2rem;color:var(--gold);margin-bottom:8px}
+.section .section-title p{color:var(--muted);max-width:880px;margin:0 auto}
+
+/* About layout */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:center}
+.about-image{border-radius:12px;overflow:hidden;box-shadow:0 20px 40px rgba(0,0,0,0.4)}
+.about-image img{width:100%;height:100%;object-fit:cover;display:block}
+.about-text h3{color:var(--gold);margin-bottom:10px}
+.about-text p{color:var(--muted);line-height:1.6;margin-bottom:12px}
+
+/* Stats */
+.stats-wrap{display:flex;gap:24px;justify-content:space-around;margin-top:28px}
+.stat{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:20px;border-radius:10px;text-align:center;min-width:140px}
+.stat .num{font-size:2rem;color:var(--gold);font-weight:800}
+.stat .label{color:var(--muted);font-weight:600}
+
+/* ===== SERVICES (carousel) ===== */
+.services-carousel{margin-top:20px;position:relative}
+.slide-row{display:flex;gap:18px;align-items:stretch;overflow:hidden}
+.slide{flex:0 0 32%;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:22px;border-radius:12px;box-shadow:0 18px 40px rgba(0,0,0,0.35);transition:transform .32s;min-height:220px}
+.slide:hover{transform:translateY(-10px)}
+.slide h4{color:var(--gold);margin-bottom:8px}
+.slide p{color:var(--muted);line-height:1.45}
+
+/* carousel controls */
+.carousel-controls{display:flex;gap:10px;justify-content:center;margin-top:12px}
+.circle-btn{width:44px;height:44px;border-radius:10px;border:0;background:rgba(255,255,255,0.04);display:inline-flex;align-items:center;justify-content:center;color:var(--white);cursor:pointer}
+
+/* ===== ACADEMY ===== */
+.academy-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.category{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:18px;border-radius:12px;box-shadow:0 12px 30px rgba(0,0,0,0.35)}
+.category h4{color:var(--gold)}
+
+/* ===== M&E section ===== */
+.me-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.me-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:16px;border-radius:12px;box-shadow:0 12px 30px rgba(0,0,0,0.28);min-height:160px}
+
+/* ===== GALLERY ===== */
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.gallery-item{position:relative;border-radius:10px;overflow:hidden;min-height:160px}
+.gallery-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
+.gallery-item:hover img{transform:scale(1.08)}
+.gallery-overlay{position:absolute;left:0;bottom:0;right:0;padding:12px;background:linear-gradient(to top, rgba(0,0,0,0.55), transparent);color:var(--white)}
+
+/* ===== TESTIMONIALS / PARTNERS ===== */
+.testimonials{display:flex;gap:16px;align-items:center;flex-direction:column}
+.testimonial-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:16px;border-radius:12px;max-width:900px;box-shadow:0 12px 30px rgba(0,0,0,0.28)}
+.partners{display:flex;gap:22px;flex-wrap:wrap;justify-content:center;align-items:center;margin-top:18px}
+.partner{opacity:.95;color:var(--muted);font-weight:600}
+
+/* ===== CONTACT ===== */
+.contact-grid{display:grid;grid-template-columns:1fr 420px;gap:22px;align-items:start}
+.contact-info h3{color:var(--gold)}
+.form-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:18px;border-radius:10px}
+.input, textarea{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:var(--white);margin-bottom:8px}
+.select{padding:10px;border-radius:8px;background:transparent;color:var(--white);border:1px solid rgba(255,255,255,0.06);width:100%;margin-bottom:8px}
+.submit{background:linear-gradient(90deg,var(--gold),var(--gold-2));border:0;padding:12px 16px;border-radius:8px;color:var(--navy);font-weight:800;cursor:pointer}
+
+/* ===== FOOTER ===== */
+footer{padding:36px 0;margin-top:20px;border-top:1px solid rgba(255,255,255,0.04);text-align:center;color:var(--muted)}
+
+/* ===== MODAL (ESTIMATOR) ===== */
+.modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.65);display:none;align-items:center;justify-content:center;z-index:2100;padding:20px}
+.modal-backdrop.active{display:flex}
+.modal-box{background:linear-gradient(180deg,var(--navy-2),var(--navy));padding:18px;border-radius:12px;max-width:720px;width:100%;box-shadow:0 24px 60px rgba(0,0,0,0.6)}
+.form-row{display:flex;gap:10px}
+@media (max-width:980px){.about-grid{grid-template-columns:1fr}.hero p{font-size:1rem}.slide{flex:0 0 80%}.slide-row{padding:0 8px}.contact-grid{grid-template-columns:1fr}.mobile-toggle{display:block}nav ul{display:none}}
+/* subtle entrance helpers */
+.reveal{opacity:0;transform:translateY(24px);transition:all .8s var(--ease)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+/* tiny utility */
+.kicker{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:1.2px}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="container header-inner">
+    <a href="Index.html" class="logo-row" aria-label="DUBliss home">
+      <!-- Local file path for the logo (file:///). Works when opening locally on same machine -->
+      <img src="file:///C:/Users/Job3%20wan%20nandi/Downloads/Website%20Development/Website%20Development/WhatsApp%20Image%202025-10-22%20at%2016.17.07_7dc05f74.jpg" alt="DUBliss logo">
+      <div class="logo-text">
+        <div class="logo-main">DUBliss</div>
+        <div class="logo-sub">Research Consultancy & Academy</div>
+      </div>
+    </a>
+
+    <nav aria-label="Primary">
+      <button class="mobile-toggle" aria-expanded="false" aria-controls="main-nav">☰</button>
+      <ul id="main-nav">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Consultancy</a></li>
+        <li><a href="#academy">Academy</a></li>
+        <li><a href="#resources">Resources</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section id="home" class="hero" aria-hidden="false">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="canvas-wrap" aria-hidden="true"><canvas id="particlesCanvas"></canvas></div>
+
+  <div class="container hero-inner">
+    <div class="kicker">Africa • Research • Innovation</div>
+    <h1 id="heroTitle">Africa's Premier Hub for Research Excellence, Innovation, and Impact</h1>
+    <p id="heroText">
+      At <strong>DUBliss</strong>, we merge academic rigor with real-world expertise to transform ideas into measurable, evidence-based impact.
+      Our consultants and trainers hold PhDs and Master's degrees from leading African universities—<strong>Wits, UCT, and UKZN</strong>—and bring
+      global experience in <strong>data science, epidemiology, monitoring & evaluation, and applied research.</strong> We help governments, NGOs,
+      academic teams, and funders translate questions into robust study designs and policy-ready evidence.
+    </p>
+
+    <div class="buttons">
+      <div class="hero-buttons">
+        <a class="btn btn-primary" href="#services" title="Explore Consultancy">Explore Consultancy</a>
+        <a class="btn btn-ghost" href="#academy" title="Join the Academy">Join the Academy</a>
+      </div>
+    </div>
+
+    <!-- floating icons / badges to make hero visually richer -->
+    <div class="hero-floating" aria-hidden="true">
+      <div style="background:var(--white);color:var(--navy);padding:10px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.25)"><i class="fas fa-chart-line"></i> Evidence</div>
+      <div style="background:rgba(212,160,23,0.14);padding:10px;border-radius:12px;color:var(--gold)"><i class="fas fa-graduation-cap"></i> Training</div>
+      <div style="background:rgba(255,255,255,0.06);padding:10px;border-radius:12px;color:var(--muted)"><i class="fas fa-globe-africa"></i> Africa-first</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="section">
+  <div class="container">
+    <div class="section-title">
+      <h2>About DUBliss</h2>
+      <p>DUBliss is a multidisciplinary consultancy and academy focused on strengthening research capacity across Africa through rigorous methodology, practical training and data-driven solutions.</p>
+    </div>
+
+    <div class="about-grid reveal" id="aboutGrid">
+      <div class="about-image">
+        <img src="https://images.unsplash.com/photo-1526378724065-4003f31c0b6b?auto=format&fit=crop&w=1400&q=80" alt="Researchers working together">
+      </div>
+
+      <div class="about-text">
+        <h3>Transforming ideas into measurable impact</h3>
+        <p>We provide end-to-end research support: concept development, study design, ethics and protocol development, sampling and power calculations, data collection and quality assurance, advanced analysis, and publication support. Our team pairs academic expertise with extensive operational experience to ensure studies are both rigorous and feasible in African contexts.</p>
+
+        <p>We place a strong emphasis on local partnership, capacity strengthening and sustainability. That means working closely with local institutions, training junior researchers, and building tools that remain useful long after a project ends.</p>
+
+        <div class="stats-wrap" aria-hidden="false">
+          <div class="stat">
+            <div class="num" data-target="24">0</div>
+            <div class="label">Projects Completed</div>
+          </div>
+          <div class="stat">
+            <div class="num" data-target="18">0</div>
+            <div class="label">Professionals Trained</div>
+          </div>
+          <div class="stat">
+            <div class="num" data-target="95">0</div>
+            <div class="label">Client Satisfaction (%)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="section" aria-labelledby="servicesTitle">
+  <div class="container">
+    <div class="section-title">
+      <h2 id="servicesTitle">Research Consultancy — Services</h2>
+      <p>Our consultancy arm offers tailored services across the research lifecycle — from grant-ready proposals to data systems and impact evaluation.</p>
+    </div>
+
+    <!-- carousel / slides for service details -->
+    <div class="services-carousel reveal" id="servicesCarousel">
+      <div class="slide-row" id="slideRow">
+        <!-- Slide 1 -->
+        <article class="slide" aria-label="Research Design & Protocols">
+          <h4>Research Design & Protocols</h4>
+          <p>We design robust study protocols (quantitative, qualitative, and mixed-methods) that align with funder expectations and local operational realities. Services include sample size/power calculations, cluster and stratified sampling design, and detailed SOPs for field teams.</p>
+          <p><strong>Deliverables:</strong> protocol document, ethics application pack, sampling plan, SOPs and training checklist.</p>
+        </article>
+
+        <!-- Slide 2 -->
+        <article class="slide" aria-label="Data Management & Analysis">
+          <h4>Data Management & Analysis</h4>
+          <p>Our data team provides data architecture, cleaning pipelines, reproducible analysis scripts (R / Python / STATA), and clear visualization outputs for stakeholders. We implement data quality assurance systems and dashboards for real-time monitoring.</p>
+          <p><strong>Deliverables:</strong> cleaned datasets, analysis scripts, interactive dashboards, and technical reports.</p>
+        </article>
+
+        <!-- Slide 3 -->
+        <article class="slide" aria-label="Publication & Dissemination">
+          <h4>Publication & Dissemination</h4>
+          <p>We support manuscript development, journal selection strategies, response to peer-review, and dissemination packages to maximize policy and public impact. Our editors help refine messages for academic and non-academic audiences.</p>
+          <p><strong>Deliverables:</strong> manuscript drafts, policy briefs, lay summaries, and submission management.</p>
+        </article>
+
+        <!-- Slide 4 -->
+        <article class="slide" aria-label="Project Management & Field Ops">
+          <h4>Project Management & Field Ops</h4>
+          <p>Operational excellence is central: we provide budgeting, timeline management, procurement support, field supervision, and QA auditing. This ensures data integrity and timely deliverables, even in complex field settings.</p>
+          <p><strong>Deliverables:</strong> GANTT and milestone plans, budget trackers, supervision frameworks, and QA reports.</p>
+        </article>
+      </div><!-- /slide-row -->
+
+      <div class="carousel-controls" role="tablist" aria-label="Service slides controls">
+        <button class="circle-btn" id="slidePrev" aria-label="Previous slide"><i class="fas fa-chevron-left"></i></button>
+        <button class="circle-btn" id="slideNext" aria-label="Next slide"><i class="fas fa-chevron-right"></i></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACADEMY -->
+<section id="academy" class="section">
+  <div class="container">
+    <div class="section-title">
+      <h2>DUBliss Academy</h2>
+      <p>Practical, hands-on courses designed to build research excellence — short professional courses, bespoke in-house training, and certificate programmes.</p>
+    </div>
+
+    <div class="academy-grid reveal" id="academyGrid">
+      <div class="category">
+        <h4>Research Mastery</h4>
+        <p>Training in study design, mixed-methods approaches, and scientific writing. Intensive modules include grant writing, ethics, and systematic review methods.</p>
+      </div>
+      <div class="category">
+        <h4>Monitoring & Evaluation</h4>
+        <p>Practical M&E courses focus on indicator design, theory of change, data-to-decision systems, and results-based performance measurement for implementers and evaluators.</p>
+      </div>
+      <div class="category">
+        <h4>AI & Data Science for Research</h4>
+        <p>From reproducible analytics to machine learning model development — tailored modules for researchers who want to apply AI responsibly in health and social contexts.</p>
+      </div>
+      <div class="category">
+        <h4>Capacity Strengthening</h4>
+        <p>Mentorship programmes, supervisor training and institution-level skill transfer to ensure sustainable research capabilities within organisations.</p>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:20px" class="reveal">
+      <a class="btn btn-primary" href="#contact">View Upcoming Courses</a>
+    </div>
+  </div>
+</section>
+
+<!-- MONITORING & EVALUATION DETAIL -->
+<section id="m-and-e" class="section">
+  <div class="container">
+    <div class="section-title">
+      <h2>Monitoring & Evaluation — Evidence that changes practice</h2>
+      <p>We design M&E systems that translate program activities into measurable outcomes. Our approach integrates data systems, indicator frameworks and rigorous evaluation methodologies.</p>
+    </div>
+
+    <div class="me-cards reveal">
+      <div class="me-card">
+        <h4>Framework & Theory of Change</h4>
+        <p>Developing a clear theory of change links activities to measurable outcomes — a prerequisite for meaningful evaluation and donor reporting.</p>
+      </div>
+      <div class="me-card">
+        <h4>Baseline, Midline & Endline</h4>
+        <p>Robust baseline and endline designs aligned to outcomes — including sampling strategies and data-collection SOPs to ensure comparability and validity.</p>
+      </div>
+      <div class="me-card">
+        <h4>Real-time Monitoring & Dashboards</h4>
+        <p>Interactive dashboards and automated indicators to support adaptive management and evidence-based decision-making by implementers and funders.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMAGE GALLERY -->
+<section id="work" class="section">
+  <div class="container">
+    <div class="section-title">
+      <h2>Our Work in Action</h2>
+      <p>Images from fieldwork, training sessions and collaborative workshops — demonstrating our operational experience across African contexts.</p>
+    </div>
+
+    <div class="gallery reveal" id="gallery">
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&w=1200&q=80" alt="Research Team"><div class="gallery-overlay"><strong>Research collaboration</strong></div></div>
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=1200&q=80" alt="Data Analysis"><div class="gallery-overlay"><strong>Advanced data analysis</strong></div></div>
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80" alt="Training Session"><div class="gallery-overlay"><strong>Professional training</strong></div></div>
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80" alt="Dashboard"><div class="gallery-overlay"><strong>Interactive dashboards</strong></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS & PARTNERS -->
+<section id="testimonials" class="section">
+  <div class="container">
+    <div class="section-title">
+      <h2>Testimonials & Partners</h2>
+      <p>What clients, partners and participants say about working with DUBliss.</p>
+    </div>
+
+    <div class="testimonials reveal" id="testiWrap">
+      <div class="testimonial-card" id="testimonialCard">
+        <p style="color:var(--muted);font-style:italic">“DUBliss strengthened our evaluation design and helped us produce a policy brief that directly informed national health policy. Their combination of local experience and technical rigor is outstanding.”</p>
+        <div style="display:flex;justify-content:space-between;margin-top:12px;align-items:center">
+          <div><strong>— Dr. L. Ndlovu</strong><br><span style="color:var(--muted);font-size:.9rem">Ministry of Health partner</span></div>
+          <div style="color:var(--muted);font-size:.85rem">Wits • UCT • UKZN network</div>
+        </div>
+      </div>
+
+      <div class="partners" aria-hidden="false">
+        <div class="partner">University of Cape Town</div>
+        <div class="partner">University of the Witwatersrand</div>
+        <div class="partner">University of KwaZulu-Natal</div>
+        <div class="partner">NGO & Donor Partners</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESOURCES & INSIGHTS -->
+<section id="resources" class="section">
+  <div class="container">
+    <div class="section-title">
+      <h2>Insights & Resources</h2>
+      <p>A hub for research guides, data tools, course materials and case studies to support practice in Africa.</p>
+    </div>
+
+    <div class="academy-grid reveal">
+      <div class="category">
+        <h4>Research Guides</h4>
+        <p>Detailed, open-access guides: study design checklists, protocol templates, and reporting standards aligned with leading journals.</p>
+      </div>
+      <div class="category">
+        <h4>Data Tools</h4>
+        <p>Reusable data cleaning scripts, visualization templates, and dashboard demos for research teams.</p>
+      </div>
+      <div class="category">
+        <h4>Training Materials</h4>
+        <p>Slides, recordings and exercises from DUBliss courses — updated regularly and tailored to African research contexts.</p>
+      </div>
+      <div class="category">
+        <h4>Case Studies</h4>
+        <p>Real projects showcasing impact measurement, M&E systems rollouts, and successful research-to-policy translation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section">
+  <div class="container">
+    <div class="section-title">
+      <h2>Get in touch</h2>
+      <p>Ready to discuss a project or book a training? We work with governments, universities, NGOs, and funders across Africa.</p>
+    </div>
+
+    <div class="contact-grid reveal" id="contactGrid">
+      <!-- Left: Contact Info -->
+      <div class="contact-info">
+        <h3>Contact & Location</h3>
+        <p style="color:var(--muted)">Mbabane, Eswatini • Available across Southern and East Africa</p>
+
+        <div style="margin-top:18px">
+          <p style="color:var(--muted)"><i class="fas fa-envelope"></i> dubliss.r.consulting@gmail.com</p>
+          <p style="color:var(--muted)"><i class="fas fa-phone"></i> +268 7810 7727 / +268 7915 6003</p>
+        </div>
+
+        <div style="margin-top:18px">
+          <h4 style="color:var(--gold)">How we work</h4>
+          <p style="color:var(--muted)">We start with a scoping consultation to understand objectives, ethics and operational constraints, then co-design a feasible research plan with clear deliverables and timelines.</p>
+        </div>
+
+      </div>
+
+      <!-- Right: Contact Form -->
+      <div class="form-card" aria-labelledby="contactFormLabel">
+        <form id="contactForm">
+          <label id="contactFormLabel" style="color:var(--muted);font-weight:700">Send us a message</label>
+          <input class="input" id="cfName" placeholder="Full name" required />
+          <input class="input" id="cfEmail" type="email" placeholder="Email address" required />
+          <select id="cfService" class="select" aria-label="Service of interest">
+            <option value="">Service of interest</option>
+            <option value="consultancy">Research Consultancy</option>
+            <option value="monitoring">Monitoring & Evaluation</option>
+            <option value="training">Training & Academy</option>
+            <option value="data">Data & AI</option>
+          </select>
+          <textarea id="cfMessage" class="input" rows="6" placeholder="Short description of your project / training need..." required></textarea>
+          <button type="submit" class="submit">Send message</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA & ESTIMATOR FLOAT BUTTON -->
+<section class="section">
+  <div class="container" style="text-align:center">
+    <div class="kicker">Quick estimator</div>
+    <h2 style="color:var(--gold)">Smart Project Estimator</h2>
+    <p style="color:var(--muted);max-width:800px;margin:10px auto 20px;">Try our lightweight estimator: type a short description and the estimator will suggest a project type, complexity and a starting budget estimate to help planning discussions.</p>
+    <button id="openEstimator" class="btn btn-primary">Open Estimator</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div style="display:flex;gap:20px;justify-content:center;align-items:center;flex-wrap:wrap">
+      <div>&copy; 2025 DUBliss Research Consultancy & Academy</div>
+      <div style="color:var(--muted)">Mbabane, Eswatini • info@dubliss.org</div>
+    </div>
+  </div>
+</footer>
+
+<!-- MODAL: SMART ESTIMATOR -->
+<div class="modal-backdrop" id="estModal" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="modal-box" role="document">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <h3 style="color:var(--gold);margin:0">Smart Project Estimator</h3>
+      <button id="closeEstimator" aria-label="Close" style="background:none;border:none;color:var(--muted);font-size:18px;cursor:pointer">✕</button>
+    </div>
+    <p style="color:var(--muted);margin:0 0 12px">Enter a short description of your goals and context (2–6 sentences). The estimator will detect likely project type, suggested package and a starting budget estimate.</p>
+
+    <div style="margin-top:12px">
+      <input id="estName" class="input" placeholder="Your name (optional)" />
+      <input id="estEmail" class="input" placeholder="Email (optional)" type="email" />
+      <textarea id="estDesc" class="input" rows="5" placeholder="Describe the project: topic, setting, sample/population, timeline and objectives..." required></textarea>
+
+      <div style="display:flex;gap:10px;margin-top:8px">
+        <select id="estUrgency" class="select" title="Urgency">
+          <option value="normal">Normal timeline</option>
+          <option value="fast">Fast turnaround (+25% cost)</option>
+          <option value="slow">Flexible timeline (-10% cost)</option>
+        </select>
+        <select id="estRegion" class="select" title="Region">
+          <option value="sadc">SADC region</option>
+          <option value="east">East Africa</option>
+          <option value="west">West Africa</option>
+          <option value="pan">Pan-Africa</option>
+        </select>
+      </div>
+
+      <button id="runEstimate" class="btn btn-primary" style="margin-top:12px">Analyze & Estimate</button>
+
+      <div id="estOutput" style="margin-top:12px;display:none;background:var(--glass);padding:12px;border-radius:8px;color:var(--muted)">
+        <div id="estDetected" style="font-weight:700;color:var(--gold)"></div>
+        <div id="estConfidence" style="margin-top:6px"></div>
+        <div id="estBudget" style="margin-top:6px;font-weight:800"></div>
+        <div id="estRationale" style="margin-top:8px;color:var(--muted)"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SCRIPTS -->
+<script>
+/* ===== Utilities & DOM helpers ===== */
+const q = s => document.querySelector(s);
+const qa = s => document.querySelectorAll(s);
+
+/* ===== Mobile menu toggle ===== */
+const mobileToggle = q('.mobile-toggle');
+const navList = q('#main-nav');
+mobileToggle && mobileToggle.addEventListener('click', ()=> {
+  const expanded = mobileToggle.getAttribute('aria-expanded') === 'true';
+  mobileToggle.setAttribute('aria-expanded', !expanded);
+  navList.style.display = navList.style.display === 'flex' ? 'none' : 'flex';
+});
+
+/* ===== Hero entrance animation (staggered) ===== */
+window.addEventListener('load', ()=> {
+  setTimeout(()=> q('#heroTitle').classList.add('visible'), 200);
+  // simple reveal function to add visible after small delay
+  const heroTitle = q('#heroTitle'), heroText = q('#heroText'), hb = q('.hero-buttons');
+  [heroTitle, heroText, hb].forEach((el,i)=> {
+    if(!el) return;
+    setTimeout(()=>{ el.style.opacity=1; el.style.transform='translateY(0)'; }, 300 + i*160);
+  });
+});
+
+/* ===== Simple particle canvas for hero ===== */
+const pc = document.getElementById('particlesCanvas');
+if (pc && pc.getContext) {
+  const ctx = pc.getContext('2d');
+  function resizeCanvas(){ pc.width = innerWidth; pc.height = innerHeight; }
+  window.addEventListener('resize', resizeCanvas); resizeCanvas();
+
+  let particles = [];
+  function initParticles(){
+    particles = [];
+    const count = Math.max(40, Math.floor(innerWidth/30));
+    for(let i=0;i<count;i++){
+      particles.push({
+        x: Math.random()*pc.width,
+        y: Math.random()*pc.height,
+        r: Math.random()*1.8 + .6,
+        vx: (Math.random()-0.5)*0.4,
+        vy: (Math.random()-0.5)*0.4,
+        alpha: 0.6 + Math.random()*0.4
+      });
+    }
+  }
+  initParticles();
+  let t=0;
+  function drawParticles(){
+    ctx.clearRect(0,0,pc.width,pc.height);
+    particles.forEach(p=>{
+      p.x += p.vx + Math.sin(t/1200 + p.x)*0.1;
+      p.y += p.vy + Math.cos(t/1100 + p.y)*0.1;
+      if(p.x < -10) p.x = pc.width + 10;
+      if(p.x > pc.width+10) p.x = -10;
+      if(p.y < -10) p.y = pc.height + 10;
+      if(p.y > pc.height+10) p.y = -10;
+      ctx.beginPath();
+      ctx.fillStyle = `rgba(212,160,23,${p.alpha})`;
+      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fill();
+    });
+    t++;
+    requestAnimationFrame(drawParticles);
+  }
+  drawParticles();
+}
+
+/* ===== Reveal elements on scroll (IntersectionObserver) ===== */
+const revealEls = qa('.reveal');
+const obs = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('visible');
+      obs.unobserve(e.target);
+    }
+  });
+},{threshold:0.12});
+revealEls.forEach(el=>obs.observe(el));
+
+/* ===== Animate counters ===== */
+function animateCounters(){
+  qa('.stat .num').forEach(el=>{
+    const target = +el.getAttribute('data-target') || +el.textContent || 0;
+    let cur = 0;
+    const step = Math.max(1, Math.round(target / 80));
+    const it = setInterval(()=>{
+      cur += step;
+      if(cur >= target){ el.textContent = target; clearInterval(it); }
+      else el.textContent = cur;
+    }, 18);
+  });
+}
+const statsSection = q('#aboutGrid');
+if(statsSection){
+  const sObs = new IntersectionObserver((entries)=>{
+    if(entries[0].isIntersecting){ animateCounters(); sObs.disconnect(); }
+  }, {threshold:0.3});
+  sObs.observe(statsSection);
+}
+
+/* ===== Services carousel controls ===== */
+const slideRow = q('#slideRow');
+const slideNext = q('#slideNext'); const slidePrev = q('#slidePrev');
+if(slideNext && slidePrev && slideRow){
+  let idx=0;
+  function updateSlides(){
+    const slides = slideRow.children;
+    const visible = Math.floor(window.innerWidth / 350) >= 3 ? 3 : (window.innerWidth > 700 ? 2 : 1);
+    const offset = idx * (slides[0].offsetWidth + 18);
+    slideRow.style.transform = `translateX(${-offset}px)`;
+  }
+  slideNext.addEventListener('click', ()=>{
+    idx++; if(idx > slideRow.children.length) idx = 0; updateSlides();
+  });
+  slidePrev.addEventListener('click', ()=>{
+    idx--; if(idx < 0) idx = Math.max(0, slideRow.children.length - 1); updateSlides();
+  });
+  window.addEventListener('resize', ()=> setTimeout(updateSlides,120));
+}
+
+/* ===== Testimonials rotation (simple) ===== */
+const testiCard = q('#testimonialCard');
+if(testiCard){
+  const quotes = [
+    {t:'“DUBliss strengthened our evaluation design and helped us produce a policy brief that directly informed national health policy.”', who:'Dr L. Ndlovu — Ministry partner'},
+    {t:'“The training was practical and immediately applicable — our team now runs routine dashboards with confidence.”', who:'M. Kamanzi — NGO monitoring lead'},
+    {t:'“Their manuscript support helped us get published in a high-impact journal.”', who:'Prof. S. Madlala — Academic collaborator'}
+  ];
+  let ti = 0;
+  setInterval(()=>{
+    ti = (ti + 1) % quotes.length;
+    testiCard.style.opacity = 0;
+    setTimeout(()=>{ testiCard.innerHTML = `<p style="color:var(--muted);font-style:italic">${quotes[ti].t}</p><div style="display:flex;justify-content:space-between;margin-top:12px;align-items:center"><div><strong>— ${quotes[ti].who}</strong></div><div style="color:var(--muted);font-size:.85rem">Wits • UCT • UKZN network</div></div>`; testiCard.style.opacity=1; }, 380);
+  }, 7000);
+}
+
+/* ===== Gallery lazy reveal (optional) ===== */
+qa('.gallery-item').forEach((g,i)=> setTimeout(()=> g.classList.add('visible'), i*90));
+
+/* ===== Contact form behavior (local only demo) ===== */
+const contactForm = q('#contactForm');
+if(contactForm){
+  contactForm.addEventListener('submit', (e)=>{
+    e.preventDefault();
+    const name = q('#cfName').value.trim();
+    const mail = q('#cfEmail').value.trim();
+    const svc = q('#cfService').value;
+    const msg = q('#cfMessage').value.trim();
+    if(!name || !mail || !msg){ alert('Please complete name, email and a short message.'); return; }
+    alert('Thanks — your message has been saved locally (demo). We will contact you soon.');
+    contactForm.reset();
+  });
+}
+
+/* ===== ESTIMATOR (improved algorithm) ===== */
+const estModal = q('#estModal');
+const openEstimator = q('#openEstimator');
+const closeEstimator = q('#closeEstimator');
+const runEstimate = q('#runEstimate');
+const estOutput = q('#estOutput');
+openEstimator && openEstimator.addEventListener('click', ()=> { estModal.classList.add('active'); estModal.setAttribute('aria-hidden','false'); });
+closeEstimator && closeEstimator.addEventListener('click', ()=> { estModal.classList.remove('active'); estModal.setAttribute('aria-hidden','true'); });
+
+function analyzeProjectText(text){
+  text = (text||'').toLowerCase();
+  // refined keyword features with weights
+  const keywords = {
+    survey: ['survey','questionnaire','household','respondent','sampling','sample'],
+    qualitative: ['interview','focus group','fgd','qualitative','in-depth','thematic'],
+    rct: ['randomi','rct','randomized','trial','control group','intervention'],
+    review: ['systematic review','meta-analysis','scoping review','meta analysis','systematic'],
+    dashboard: ['dashboard','visualization','dashboarding','power bi','tableau','visual'],
+    ml: ['machine learning','predict','model','ml','random forest','xgboost','neural','deep learning'],
+    implementation: ['implementation','process','sop','fidelity','rollout'],
+    economics: ['cost-effectiveness','econometric','costing','economic']
+  };
+
+  const scores = {};
+  for(const k in keywords){ scores[k]=0; keywords[k].forEach(kw=> { if(text.includes(kw)) scores[k]+=1; }); }
+  // examine counts
+  let top = Object.entries(scores).sort((a,b)=>b[1]-a[1])[0] || ['general',0];
+  let detected = top[0];
+  if(top[1] === 0) detected = 'general';
+  // compute confidence roughly
+  const total = Object.values(scores).reduce((s,v)=>s+v,0);
+  const confidence = total ? Math.round((top[1]/total)*100) : 45;
+
+  // compute complexity and base cost
+  let complexity = 1.0;
+  if(['rct','ml','economics'].includes(detected)) complexity = 1.5;
+  if(['qualitative','survey','dashboard','implementation'].includes(detected)) complexity = 1.15;
+  if(detected === 'review') complexity = 0.9;
+
+  // adjust for urgency / region handled separately
+  return {detected, confidence, complexity};
+}
+
+function estimateBudget({complexity, months=3, urgency='normal', region='sadc'}){
+  // baseline: USD
+  const base = 1200;
+  const perMonth = 600;
+  let est = Math.round((base + perMonth*(Math.max(1,months))) * complexity);
+  // urgency adjust
+  if(urgency === 'fast') est = Math.round(est * 1.25);
+  if(urgency === 'slow') est = Math.round(est * 0.9);
+  // region surcharge (pan-Africa higher)
+  if(region === 'pan') est = Math.round(est * 1.12);
+  if(region === 'west' || region === 'east') est = Math.round(est * 1.06);
+  return est;
+}
+
+runEstimate && runEstimate.addEventListener('click', ()=>{
+  const desc = q('#estDesc').value.trim();
+  if(!desc || desc.length < 12){ alert('Please provide a short description (at least 12 characters).'); return; }
+  const urgency = q('#estUrgency').value;
+  const region = q('#estRegion').value;
+  const months = 3; // default, could extend UI
+  // analyze
+  const analysis = analyzeProjectText(desc);
+  const budget = estimateBudget({complexity:analysis.complexity, months, urgency, region});
+  // friendly labels
+  const typeLabels = {
+    survey:'Survey Research',
+    qualitative:'Qualitative Research',
+    rct:'Randomized Trial (RCT)',
+    review:'Systematic Review / Meta-analysis',
+    dashboard:'Dashboard / Visualization',
+    ml:'AI / Machine Learning',
+    implementation:'Implementation Science',
+    economics:'Economic Evaluation',
+    general:'General Research / Proposal'
+  };
+  const label = typeLabels[analysis.detected] || 'General Research';
+  q('#estDetected').textContent = `Detected project type: ${label} (${analysis.confidence}% confidence)`;
+  q('#estConfidence').textContent = `Complexity multiplier: ${analysis.complexity.toFixed(2)} — suggested timeline: ${months} months`;
+  q('#estBudget').textContent = `Estimated starting budget (USD): $${budget.toLocaleString()}`;
+  q('#estRationale').textContent = 'Rationale: Keyword-based detection plus complexity heuristics. This is a planning estimate — an exact quote will follow a scoping consultation.';
+  estOutput.style.display = 'block';
+});
+
+/* ===== Close modal on ESC ===== */
+document.addEventListener('keydown', (e)=> {
+  if(e.key === 'Escape') {
+    if(estModal.classList.contains('active')) { estModal.classList.remove('active'); estModal.setAttribute('aria-hidden','true'); }
+  }
+});
+
+/* ===== Accessibility: focus outlines for keyboard users ===== */
+document.body.addEventListener('keydown', (e)=> { if(e.key === 'Tab') document.body.classList.add('show-focus'); });
+
+/* ===== Improve anchor smooth scroll offset for fixed header ===== */
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click', (e)=>{
+    const href = a.getAttribute('href');
+    if(href === '#' || href.length === 0) return;
+    const target = document.querySelector(href);
+    if(target){
+      e.preventDefault();
+      const y = target.getBoundingClientRect().top + window.scrollY - 72;
+      window.scrollTo({top: y, behavior:'smooth'});
+      if(window.innerWidth < 980) { navList.style.display = 'none'; }
+    }
+  });
+});
+</script>
+</body>
+</html>
